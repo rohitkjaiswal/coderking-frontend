@@ -1,0 +1,8 @@
+{
+  "short_name": "CoderKing",
+  "name": "CoderKing - Live Contests",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Live coding contest organizer"
+}

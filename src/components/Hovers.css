@@ -1,0 +1,35 @@
+.cources{
+    display:none;
+    background-color: white;
+    border-radius: 5px;
+    padding: 2%;
+    border: 2px  white;
+}
+
+.cources ul{
+    font-style: none;
+    list-style:none;
+}
+
+.cources li{
+    cursor: pointer;
+}
+
+li:hover{
+        border-right: 2px double blue;
+
+}
+
+
+
+.hoverCss{
+    cursor: pointer;
+}
+
+.hoverCss:hover{
+    .cources{
+        display: block;
+        background: #000;
+    }
+
+}
