@@ -10,7 +10,7 @@ export default function Register(){
   async function submit(e){
     e.preventDefault();
     try {
-      await api.post(`${API_BASE}/auth/register`, form);
+      await api.post('https://coderking-backend-production.up.railway.app/api/auth/register', form);
       setMsg('Registration successful. Please login.');
       setTimeout(()=>nav('/login'), 1200);
     } catch(e){ setMsg('Registration failed'); }
