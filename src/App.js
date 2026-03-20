@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Contests from './pages/Contests';
 import ContestDetails from './pages/ContestDetails';
 import Leaderboard from './pages/Leaderboard';
-import Certificate from './pages/Certificate';
+// import Certificate from './pages/Certificate';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import OrganizerPanel from './pages/OrganizerPanel';
@@ -24,17 +24,26 @@ import RequestOrganizerAccess from './pages/RequestOrganizerAccess';
 import CourseCard from './components/CourseCard';
 import CourseLayout from './components/CourseLayout';
 import PastContests from './pages/PastContests';
-
+import Certificate from './components/Certificate';
 const user = localStorage.getItem('token'); // stub for auth check
-
+import "./App.css"
 
 function App() {
   const courseId=useParams();
 
+ 
   return (
     <BrowserRouter>
+      
+      
+     
+
+
+
+
+
       <Navbar />
-      <main className="container-fluid my-4">
+      <main >
         <Routes>
           <Route path="/" element={<Home />} />
           

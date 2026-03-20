@@ -1,0 +1,8 @@
+.header{
+    height: 100vh;
+          /* backgroundImage: `url(${bg_img})`, */
+          background-size:cover;
+          background-blend-mode:darken;
+          background-position: center;
+          color: white;
+}
