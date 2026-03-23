@@ -16,7 +16,7 @@ export default function Register() {
     setStatus({ type: null, msg: '' });
 
     try {
-<<<<<<< HEAD
+
       await api.post('/auth/register', form);
       setStatus({ type: 'success', msg: 'Account created! Redirecting to login...' });
       setTimeout(() => nav('/login'), 2000);
@@ -24,12 +24,13 @@ export default function Register() {
       setLoading(false);
       setStatus({ type: 'error', msg: err.response?.data?.message || 'Registration failed. Please try again.' });
     }
-=======
-      await api.post('https://coderking-backend-production.up.railway.app/api/auth/register', form);
-      setMsg('Registration successful. Please login.');
-      setTimeout(()=>nav('/login'), 1200);
-    } catch(e){ setMsg('Registration failed'); }
->>>>>>> origin/main
+
+    //   await api.post('https://coderking-backend-production.up.railway.app/api/auth/register', form);
+    //   setMsg('Registration successful. Please login.');
+    //   setTimeout(()=>nav('/login'), 1200);
+    // } catch(e){ setMsg('Registration failed'); 
+              
+}
   }
 
   return (
