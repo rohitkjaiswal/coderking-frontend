@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Contests from './pages/Contests';
 import ContestDetails from './pages/ContestDetails';
 import Leaderboard from './pages/Leaderboard';
-// import Certificate from './pages/Certificate';
+ // import Certificate from './pages/Certificate';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import OrganizerPanel from './pages/OrganizerPanel';
@@ -47,7 +47,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           
-          //route for demo components
+        
           <Route path="/course" element={<CourseCard/>} />
          <Route path="/course/:courseId/video/:videoId" element={<CourseLayout />} />
          <Route path="/course/:courseId" element={<CourseLayout/>} />
