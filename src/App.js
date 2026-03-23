@@ -39,10 +39,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           
-<<<<<<< HEAD
-=======
-        
->>>>>>> 75d1e9c87ecd2bda97b717b09e8a15113c0b1ee6
           <Route path="/course" element={<CourseCard/>} />
          <Route path="/course/:courseId/video/:videoId" element={<CourseLayout />} />
          <Route path="/course/:courseId" element={<CourseLayout/>} />
