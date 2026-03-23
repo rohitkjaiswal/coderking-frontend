@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import Contests from './pages/Contests';
 import ContestDetails from './pages/ContestDetails';
 import Leaderboard from './pages/Leaderboard';
-// import Certificate from './pages/Certificate';
+ // import Certificate from './pages/Certificate';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import OrganizerPanel from './pages/OrganizerPanel';
@@ -39,6 +39,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 75d1e9c87ecd2bda97b717b09e8a15113c0b1ee6
           <Route path="/course" element={<CourseCard/>} />
          <Route path="/course/:courseId/video/:videoId" element={<CourseLayout />} />
          <Route path="/course/:courseId" element={<CourseLayout/>} />
