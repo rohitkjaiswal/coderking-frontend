@@ -10,29 +10,24 @@ export default function Register() {
   const [showPassword, setShowPassword] = useState(false);
   const nav = useNavigate();
 
-  async function submit(e) {
-    e.preventDefault();
-    setLoading(true);
-    setStatus({ type: null, msg: '' });
+ async function submit(e) {
+  e.preventDefault();
+  setLoading(true);
+  setStatus({ type: null, msg: '' });
 
-    try {
-
-      await api.post('/auth/register', form);
-      setStatus({ type: 'success', msg: 'Account created! Redirecting to login...' });
-      setTimeout(() => nav('/login'), 2000);
-    } catch (err) {
-      setLoading(false);
-      setStatus({ type: 'error', msg: err.response?.data?.message || 'Registration failed. Please try again.' });
-    }
-
-    //   await api.post('https://coderking-backend-production.up.railway.app/api/auth/register', form);
-    //   setMsg('Registration successful. Please login.');
-    //   setTimeout(()=>nav('/login'), 1200);
-    // } catch(e){ setMsg('Registration failed'); 
-              
-}
+  try {
+    await api.post('/auth/register', form);
+    setLoading(false); // Reset loading state
+    setStatus({ type: 'success', msg: 'Account created! Redirecting to login...' });
+    setTimeout(() => nav('/login'), 2000);
+  } catch (err) {
+    setLoading(false);
+    setStatus({ 
+      type: 'error', 
+      msg: err.response?.data?.message || 'Registration failed. Please try again.' 
+    });
   }
-
+}
   return (
     <div className="min-vh-100 d-flex align-items-center bg-white">
       <div className="container-fluid h-100">
