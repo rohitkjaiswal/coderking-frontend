@@ -470,7 +470,6 @@ export default function OrganizerPanel() {
           </div>
           <PastContests />
         </div>
-
       </div>
     </>
   );

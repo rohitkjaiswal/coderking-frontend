@@ -1,9 +1,9 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import api from "../utils/api";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext()
 
-export default function AuthProvider({ children }) {
+export const AuthProvider=({ children })=> {
   const [user, setUser] = useState(null); // { id, name, email, role }
   const [loading, setLoading] = useState(true);
 
@@ -44,3 +44,7 @@ export default function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
+ const useAuthContext=()=>useContext(AuthContext);
+
+ export default useAuthContext;

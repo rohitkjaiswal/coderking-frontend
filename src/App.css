@@ -1,1 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+:root {
+  --bg: #00d2ff; /* Now the entire site is Blue instantly */
+}

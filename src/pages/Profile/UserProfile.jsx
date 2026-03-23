@@ -1,17 +1,20 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useContext, useEffect, useState } from 'react';
 import api from '../../utils/api';
 import { API_BASE } from '../../config';
 import { useParams, Link } from 'react-router-dom';
 import { Edit3, Award, Zap, Code, User, MessageSquare, MapPin } from 'lucide-react';
+import useAuthContext from '../../context/AuthContext';
 
 export default function Profile() {
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState(null);
   const { id } = useParams();
 
+const {user} =useAuthContext();
+
   useEffect(() => {
     async function fetchProfile() {
-      // if (!id) return;
+       if (!id) return;
       try {
         const resp = await api.get(`${API_BASE}/profile/${id}`);
         setProfile(resp.data);
@@ -57,13 +60,15 @@ export default function Profile() {
               <p className="text-muted small mb-3">
                 <MapPin size={14} className="me-1" /> {profile.location || "Global Citizen"}
               </p>
-              {id == profile.id && (
+              {id == user.id && (
                 <div className="d-grid gap-2">
                   <Link to={`/profile/${id}/edit`} className="btn btn-primary btn-sm rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center shadow-sm">
                     <Edit3 size={16} className="me-2" /> Edit Profile
                   </Link>
                 </div>
               )}
+
+              {id==user.id && (
               <div className="d-grid gap-2">
                 <Link to={`/profile/${id}/edit`} className="btn btn-primary btn-sm rounded-pill py-2 fw-semibold d-flex align-items-center justify-content-center shadow-sm">
                   <Edit3 size={16} className="me-2" /> Edit Profile
@@ -72,6 +77,7 @@ export default function Profile() {
                   <MessageSquare size={16} className="me-2" /> View Requests
                 </Link>
               </div>
+              )}
             </div>
 
             {/* Stats Card */}

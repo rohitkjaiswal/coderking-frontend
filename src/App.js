@@ -34,20 +34,11 @@ function App() {
  
   return (
     <BrowserRouter>
-      
-      
-     
-
-
-
-
-
       <Navbar />
       <main >
         <Routes>
           <Route path="/" element={<Home />} />
           
-          //route for demo components
           <Route path="/course" element={<CourseCard/>} />
          <Route path="/course/:courseId/video/:videoId" element={<CourseLayout />} />
          <Route path="/course/:courseId" element={<CourseLayout/>} />
@@ -65,13 +56,16 @@ function App() {
           <Route path="/organizer/create-contest" element={<CreateContest />} />
           <Route path="/admin" element={<AdminDashboard />} />
            <Route
-            path="/admin/approvals"
+            path="/admin/approvals" 
             // element={
             //   // <ProtectedRoute roles={["ADMIN"]}>
             //   //   <ApprovalsPage />
             //   // </ProtectedRoute>
             //   // <ApprovalsPage />
             // }
+
+            element={<ApprovalsPage/>}
+           
           />
           <Route path='/admin/past-contests' element={<PastContests/>}></Route>
           <Route path="/admin/create-contest" element={<CreateContest />} />

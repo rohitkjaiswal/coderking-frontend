@@ -1,76 +1,81 @@
-import React, { useEffect, useState } from "react"
-import { NavLink,Link } from "react-router-dom"
-import api from "../utils/api"  
-import { API_BASE } from "../config";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import api from "../utils/api";  
+import "./CourseCard.css";
 
-export default function  CourseCard(){
-  const [courses , setCourses]=useState([]);
-  const [serchTerm, setSearchTerm] =useState("");
-  //   const cources=[
-  //       {
-  //           name:'AI & ML',
-  //           img:'',
-  //           description:'This is the fantastic course',
-  //           Domain:'AI'
-  //       },
-  //         {
-  //           name:'AI & ML',
-  //           img:'',
-  //           description:'This is the fantastic course',
-  //           Domain:'AI'
-  //       },
-  //         {
-  //           name:'AI & ML',
-  //           img:'',
-  //           description:'This is the fantastic course',
-  //           Domain:'AI'
-  //       }
-  //   ]
+export default function CourseCard() {
+  const [courses, setCourses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(true);
 
-    useEffect(()=>{
-      async function fetchCourses() {
-        const resp=await api.get(`${API_BASE}/courses`);
-           setCourses(resp.data);
+  useEffect(() => {
+    async function fetchCourses() {
+      try {
+        setLoading(true);
+        const resp = await api.get("/courses");
+        setCourses(resp.data || []);
+      } catch (err) {
+        console.error("Fetch error:", err);
+      } finally {
+        setLoading(false);
       }
-      fetchCourses();
-    },[]);
+    }
+    fetchCourses();
+  }, []);
 
-    //filter logic
-     const filteredCourse=courses
-     .filter((course)=>{
-      course.name.toLowerCase().includes(serchTerm.toLowerCase());
-     })
+  // Fixed Filter Logic
+  const filteredCourses = courses.filter((course) =>
+    course.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-    return (
-      <>
-      <div className="container mt-3">
-        {/* filter form control*/}
-        <div className="mb-3 gap-3 d-flex">
-          <input
-          type="text"
-          className="form-control"
-          placeholder="Search by name...."
-          value={serchTerm}
-          onChange={(e)=>setSearchTerm(e.target.value)}
-          />
-        </div>
-      
-          <section className="row">
-            {courses.map((course,i)=>
-            
-            <div className="col-md-3 p-2" style={{height:'250px'}} key={courses.cid}>
-                <Link to={`/course/${course.cid}`} style={{textDecoration:'none'}}>
-                <div className="card text-center p-2">
-                    <h2>{course.name}</h2>
-                    {/* <img src={course.img}/> */}
-                    <p>{course.creator}</p>
-                    <p>{course.details}</p>
-                    <p>{course.catagory}</p>
-                </div> </Link>
-            </div>
-            )}
-          </section>
+  return (
+    <div className="courses-page-wrapper mt-5">
+      <div className="container">
+        {/* Search Section */}
+        <div className="search-container mb-5">
+          <div className="search-glass">
+            <i className="bi bi-search"></i>
+            <input
+              type="text"
+              placeholder="Search for a skill or course..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
           </div>
-          </>
-    )
+        </div>
+
+        {/* Grid Section */}
+        <section className="row g-4">
+          {loading ? (
+            <div className="text-center py-5 text-muted">Loading courses...</div>
+          ) : filteredCourses.length === 0 ? (
+            <div className="text-center py-5">
+              <h4 className="text-muted">No courses found matching "{searchTerm}"</h4>
+            </div>
+          ) : (
+            filteredCourses.map((course) => (
+              <div className="col-xl-3 col-lg-4 col-md-6" key={course.cid}>
+                <Link to={`/course/${course.cid}`} className="course-card-link">
+                  <div className="modern-card">
+                    <div className="card-badge">{course.catagory || "Programming"}</div>
+                    
+                    <div className="card-content">
+                      <h3 className="course-title">{course.name}</h3>
+                      <p className="instructor">By {course.creator}</p>
+                      <p className="description-preview">{course.details}</p>
+                    </div>
+
+                    <div className="card-footer-ui">
+                      <span className="learn-more">Get Started</span>
+                      <div className="arrow-icon">→</div>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            ))
+          )}
+        </section>
+      </div>
+    </div>
+  );
 }
